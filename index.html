@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Venor Unaizah</title>
+  <style>
+    :root {
+      --bg: #f3f4f6;
+      --card: #ffffff;
+      --border: #d1d5db;
+      --text: #111827;
+      --muted: #6b7280;
+      --blue: #1d4ed8;
+      --green: #15803d;
+      --red: #dc2626;
+      --orange: #ea580c;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 14px;
+    }
+
+    .box {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 14px;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+    }
+
+    h1 {
+      text-align: center;
+      margin: 0;
+      font-size: 34px;
+    }
+
+    h3 {
+      text-align: center;
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .item {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+
+    .item-title {
+      font-weight: bold;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    .inputs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      font-size: 15px;
+      background: white;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .calc {
+      background: #0d6efd;
+      color: white;
+    }
+
+    .clear {
+      background: #e5e7eb;
+      color: #111827;
+    }
+
+    .result-line {
+      border-bottom: 1px solid #e5e7eb;
+      padding: 10px 0;
+    }
+
+    .result-line:last-child {
+      border-bottom: none;
+    }
+
+    .status-short { color: var(--red); font-weight: bold; }
+    .status-over { color: var(--orange); font-weight: bold; }
+    .status-match { color: var(--green); font-weight: bold; }
+
+    .summary-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .summary-line {
+      padding: 8px 0;
+      border-bottom: 1px solid #e5e7eb;
+      font-size: 16px;
+    }
+
+    .summary-line:last-child {
+      border-bottom: none;
+    }
+
+    .footer {
+      text-align: right;
+      color: var(--muted);
+      font-size: 13px;
+      padding-top: 4px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <h1>Venor Unaizah</h1>
+  <h3>Closing Report - Prepared by Haitham</h3>
+</div>
+
+<div class="box">
+  <div class="item">
+    <div class="item-title">HungerStation</div>
+    <div class="inputs">
+      <input id="a0" type="number" step="0.01" placeholder="Actual">
+      <input id="s0" type="number" step="0.01" placeholder="System">
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-title">Jahez</div>
+    <div class="inputs">
+      <input id="a1" type="number" step="0.01" placeholder="Actual">
+      <input id="s1" type="number" step="0.01" placeholder="System">
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-title">To You</div>
+    <div class="inputs">
+      <input id="a2" type="number" step="0.01" placeholder="Actual">
+      <input id="s2" type="number" step="0.01" placeholder="System">
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-title">Foodics POS Down</div>
+    <div class="inputs">
+      <input id="a3" type="number" step="0.01" placeholder="Actual">
+      <input id="s3" type="number" step="0.01" placeholder="System">
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-title">Foodics POS Up</div>
+    <div class="inputs">
+      <input id="a4" type="number" step="0.01" placeholder="Actual">
+      <input id="s4" type="number" step="0.01" placeholder="System">
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-title">QR Payment</div>
+    <div class="inputs">
+      <input id="a5" type="number" step="0.01" placeholder="Actual">
+      <input id="s5" type="number" step="0.01" placeholder="System">
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-title">Employee Bill 30%</div>
+    <div class="inputs">
+      <input id="a6" type="number" step="0.01" placeholder="Actual">
+      <input id="s6" type="number" step="0.01" placeholder="System">
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-title">Transfer</div>
+    <div class="inputs">
+      <input id="a7" type="number" step="0.01" placeholder="Actual">
+      <input id="s7" type="number" step="0.01" placeholder="System">
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-title">Additional</div>
+    <div class="inputs">
+      <input id="a8" type="number" step="0.01" placeholder="Actual">
+      <input id="s8" type="number" step="0.01" placeholder="System">
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-title">Any Bill</div>
+    <div class="inputs">
+      <input id="a9" type="number" step="0.01" placeholder="Actual">
+      <input id="s9" type="number" step="0.01" placeholder="System">
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-title">Party</div>
+    <div class="inputs">
+      <input id="a10" type="number" step="0.01" placeholder="Actual">
+      <input id="s10" type="number" step="0.01" placeholder="System">
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-title">Total Cash</div>
+    <div class="inputs">
+      <input id="a11" type="number" step="0.01" placeholder="Actual">
+      <input id="s11" type="number" step="0.01" placeholder="System">
+    </div>
+  </div>
+</div>
+
+<div class="box buttons">
+  <button class="calc" onclick="calculateReport()">Calculate</button>
+  <button class="clear" onclick="clearReport()">Clear</button>
+</div>
+
+<div class="box">
+  <div class="summary-title">Summary</div>
+  <div class="summary-line" id="systemOnAccountLine">System On Account: 0.00</div>
+  <div class="summary-line" id="actualOnAccountLine">Actual On Account: 0.00</div>
+  <div class="summary-line" id="actualTotalLine">Actual Total: 0.00</div>
+  <div class="summary-line" id="systemTotalLine">System Total: 0.00</div>
+  <div class="summary-line" id="finalDiffLine">Final Difference: 0.00</div>
+  <div class="summary-line" id="finalStatusLine">Final Status: -</div>
+</div>
+
+<div class="box">
+  <div class="summary-title">Results</div>
+  <div id="result"></div>
+</div>
+
+
+
+<script>
+  const items = [
+    "HungerStation",
+    "Jahez",
+    "To You",
+    "Foodics POS Down",
+    "Foodics POS Up",
+    "QR Payment",
+    "Employee Bill 30%",
+    "Transfer",
+    "Additional",
+    "Any Bill",
+    "Party",
+    "Total Cash"
+  ];
+
+  function getValue(id) {
+    const v = parseFloat(document.getElementById(id).value);
+    return isNaN(v) ? 0 : v;
+  }
+
+  function f(n) {
+    return Number(n).toFixed(2);
+  }
+
+  function getStatus(diff) {
+    if (diff === 0) {
+      return { text: 'Matched', cls: 'status-match' };
+    }
+    if (diff < 0) {
+      return { text: 'Short ' + f(Math.abs(diff)), cls: 'status-short' };
+    }
+    return { text: 'Over ' + f(diff), cls: 'status-over' };
+  }
+
+  function calculateReport() {
+    let html = '';
+    let totalA = 0, totalS = 0, onAccountA = 0, onAccountS = 0, foodicsA = 0, foodicsS = 0;
+
+    for (let i = 0; i < items.length; i++) {
+      const actualInput = document.getElementById('a' + i).value.trim();
+      const systemInput = document.getElementById('s' + i).value.trim();
+      const hasUserInput = actualInput !== '' || systemInput !== '';
+
+      if (!hasUserInput) {
+        continue;
+      }
+
+      const a = getValue('a' + i);
+      const s = getValue('s' + i);
+      const diff = a - s;
+      const st = getStatus(diff);
+
+      totalA += a;
+      totalS += s;
+
+      if (items[i] !== 'Total Cash') {
+        onAccountA += a;
+        onAccountS += s;
+      }
+
+      if (items[i] === 'Foodics POS Down' || items[i] === 'Foodics POS Up' || items[i] === 'QR Payment' || items[i] === 'Employee Bill 30%') {
+        foodicsA += a;
+        foodicsS += s;
+      }
+
+      html += '<div class="result-line"><b>' + items[i] + '</b><br>Actual: ' + f(a) + ' | System: ' + f(s) + ' | Difference: ' + f(diff) + '<br><span class="' + st.cls + '">' + st.text + '</span></div>';
+    }
+
+    const foodicsEntered = ['a3','s3','a4','s4','a5','s5','a6','s6'].some(id => document.getElementById(id).value.trim() !== '');
+    if (foodicsEntered) {
+      const foodicsDiff = foodicsA - foodicsS;
+      const fst = getStatus(foodicsDiff);
+      html += '<div class="result-line"><b>Foodics Total</b><br>Actual: ' + f(foodicsA) + ' | System: ' + f(foodicsS) + ' | Difference: ' + f(foodicsDiff) + '<br><span class="' + fst.cls + '">' + fst.text + '</span></div>';
+    }
+
+    const finalDiff = totalA - totalS;
+    const finalStatus = getStatus(finalDiff);
+
+    document.getElementById('systemOnAccountLine').innerHTML = 'System On Account: ' + f(onAccountS);
+    document.getElementById('actualOnAccountLine').innerHTML = 'Actual On Account: ' + f(onAccountA);
+    document.getElementById('actualTotalLine').innerHTML = 'Actual Total: ' + f(totalA);
+    document.getElementById('systemTotalLine').innerHTML = 'System Total: ' + f(totalS);
+    document.getElementById('finalDiffLine').innerHTML = 'Final Difference: ' + f(finalDiff);
+    document.getElementById('finalStatusLine').innerHTML = 'Final Status: <span class="' + finalStatus.cls + '">' + finalStatus.text + '</span>';
+    document.getElementById('result').innerHTML = html === '' ? '<div class="result-line">No entered items yet.</div>' : html;
+  }
+
+  function clearReport() {
+    for (let i = 0; i < items.length; i++) {
+      document.getElementById('a' + i).value = '';
+      document.getElementById('s' + i).value = '';
+    }
+
+    document.getElementById('systemOnAccountLine').innerHTML = 'System On Account: 0.00';
+    document.getElementById('actualOnAccountLine').innerHTML = 'Actual On Account: 0.00';
+    document.getElementById('actualTotalLine').innerHTML = 'Actual Total: 0.00';
+    document.getElementById('systemTotalLine').innerHTML = 'System Total: 0.00';
+    document.getElementById('finalDiffLine').innerHTML = 'Final Difference: 0.00';
+    document.getElementById('finalStatusLine').innerHTML = 'Final Status: -';
+    document.getElementById('result').innerHTML = '';
+  }
+</script>
+
+</body>
+</html>
