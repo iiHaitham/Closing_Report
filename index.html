@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Venor</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f3f4f6;
+  margin: 0;
+  padding: 14px;
+}
+
+.box {
+  background: white;
+  border-radius: 16px;
+  padding: 14px;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+}
+
+h1, h3 {
+  text-align: center;
+  margin: 5px;
+}
+
+.item {
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 10px;
+  margin-bottom: 8px;
+}
+
+.item-title {
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.calc { background: #0d6efd; color: white; }
+.clear { background: #e5e7eb; color: #111827; }
+.pdf { background: #16a34a; color: white; }
+
+.summary-line {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 16px;
+}
+
+@media (max-width: 600px) {
+  .inputs {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+  <h1>Venor</h1>
+  <h3>Closing Report</h3>
+</div>
+
+<div class="box">
+
+  <div class="item">
+    <div class="item-title">HungerStation</div>
+    <div class="inputs">
+      <input id="a0" type="number" placeholder="Amount" oninput="calc()">
+      <input id="o0" type="number" placeholder="Orders" oninput="calc()">
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-title">Jahez</div>
+    <div class="inputs">
+      <input id="a1" type="number" placeholder="Amount" oninput="calc()">
+      <input id="o1" type="number" placeholder="Orders" oninput="calc()">
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-title">To You</div>
+    <div class="inputs">
+      <input id="a2" type="number" placeholder="Amount" oninput="calc()">
+      <input id="o2" type="number" placeholder="Orders" oninput="calc()">
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-title">Keeta</div>
+    <div class="inputs">
+      <input id="a3" type="number" placeholder="Amount" oninput="calc()">
+      <input id="o3" type="number" placeholder="Orders" oninput="calc()">
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-title">The Chefz</div>
+    <div class="inputs">
+      <input id="a4" type="number" placeholder="Amount" oninput="calc()">
+      <input id="o4" type="number" placeholder="Orders" oninput="calc()">
+    </div>
+  </div>
+
+  <div class="item"><div class="item-title">Foodics POS 10</div><input id="a5" type="number" placeholder="Amount" oninput="calc()"></div>
+  <div class="item"><div class="item-title">Foodics POS 11</div><input id="a6" type="number" placeholder="Amount" oninput="calc()"></div>
+  <div class="item"><div class="item-title">Foodics POS 12</div><input id="a7" type="number" placeholder="Amount" oninput="calc()"></div>
+  <div class="item"><div class="item-title">Foodics POS 13</div><input id="a8" type="number" placeholder="Amount" oninput="calc()"></div>
+  <div class="item"><div class="item-title">Foodics POS 56</div><input id="a9" type="number" placeholder="Amount" oninput="calc()"></div>
+  <div class="item"><div class="item-title">Foodics POS 57</div><input id="a10" type="number" placeholder="Amount" oninput="calc()"></div>
+
+  <div class="item"><div class="item-title">Foodics QR Out</div><input id="a11" type="number" placeholder="Amount" oninput="calc()"></div>
+  <div class="item"><div class="item-title">Foodics QR Down</div><input id="a12" type="number" placeholder="Amount" oninput="calc()"></div>
+
+  <div class="item"><div class="item-title">Employee Bill 30%</div><input id="a13" type="number" placeholder="Amount" oninput="calc()"></div>
+  <div class="item"><div class="item-title">Transfer</div><input id="a14" type="number" placeholder="Amount" oninput="calc()"></div>
+  <div class="item"><div class="item-title">Additional</div><input id="a15" type="number" placeholder="Amount" oninput="calc()"></div>
+  <div class="item"><div class="item-title">Any Bill</div><input id="a16" type="number" placeholder="Amount" oninput="calc()"></div>
+
+  <div class="item"><div class="item-title">Tips Cashier Out</div><input id="a17" type="number" placeholder="Amount" oninput="calc()"></div>
+  <div class="item"><div class="item-title">Tips Cashier Down</div><input id="a18" type="number" placeholder="Amount" oninput="calc()"></div>
+
+  <div class="item"><div class="item-title">Total Cash</div><input id="a19" type="number" placeholder="Amount" oninput="calc()"></div>
+  <div class="item"><div class="item-title">Total Transfer</div><input id="a20" type="number" placeholder="Amount" oninput="calc()"></div>
+  <div class="item"><div class="item-title">Party</div><input id="a21" type="number" placeholder="Amount" oninput="calc()"></div>
+</div>
+
+<button class="calc" onclick="calc()">Calculate</button>
+<button class="clear" onclick="clearData()">Clear</button>
+<button class="pdf" onclick="downloadPDF()">Download PDF</button>
+
+<div class="box">
+  <div class="summary-line" id="ordersDelivery">Total Orders Delivery: 0</div>
+  <div class="summary-line" id="delivery">Total Delivery: 0.00</div>
+  <div class="summary-line" id="foodics">Total Foodics POS: 0.00</div>
+  <div class="summary-line" id="qr">Total Foodics QR: 0.00</div>
+  <div class="summary-line" id="tips">Total Tips Cashier: 0.00</div>
+  <div class="summary-line" id="onAccount">Total On Account: 0.00</div>
+  <div class="summary-line" id="final">Final Total: 0.00</div>
+</div>
+
+<script>
+function get(id) {
+  const el = document.getElementById(id);
+  return el ? parseFloat(el.value) || 0 : 0;
+}
+
+function calc() {
+  const ordersDelivery =
+    get("o0") + get("o1") + get("o2") + get("o3") + get("o4");
+
+  const delivery =
+    get("a0") + get("a1") + get("a2") + get("a3") + get("a4");
+
+  const foodics =
+    get("a5") + get("a6") + get("a7") + get("a8") + get("a9") + get("a10");
+
+  const qr = get("a11") + get("a12");
+  const tips = get("a17") + get("a18");
+
+  let final = 0;
+
+  for (let i = 0; i <= 21; i++) {
+    if (i === 17 || i === 18) continue;
+    final += get("a" + i);
+  }
+
+  const onAccount = final - get("a19");
+
+  document.getElementById("ordersDelivery").innerText = "Total Orders Delivery: " + ordersDelivery.toFixed(0);
+  document.getElementById("delivery").innerText = "Total Delivery: " + delivery.toFixed(2);
+  document.getElementById("foodics").innerText = "Total Foodics POS: " + foodics.toFixed(2);
+  document.getElementById("qr").innerText = "Total Foodics QR: " + qr.toFixed(2);
+  document.getElementById("tips").innerText = "Total Tips Cashier: " + tips.toFixed(2);
+  document.getElementById("onAccount").innerText = "Total On Account: " + onAccount.toFixed(2);
+  document.getElementById("final").innerText = "Final Total: " + final.toFixed(2);
+}
+
+function clearData() {
+  for (let i = 0; i <= 21; i++) {
+    const el = document.getElementById("a" + i);
+    if (el) el.value = "";
+  }
+
+  for (let i = 0; i <= 4; i++) {
+    const el = document.getElementById("o" + i);
+    if (el) el.value = "";
+  }
+
+  calc();
+}
+
+function downloadPDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  const now = new Date();
+  now.setDate(now.getDate() - 1);
+  const today = now.toLocaleDateString("en-GB");
+
+  calc();
+
+  doc.setFillColor(13, 110, 253);
+  doc.rect(0, 0, 210, 30, "F");
+
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(20);
+  doc.text("VENOR", 105, 13, { align: "center" });
+
+  doc.setFontSize(11);
+  doc.text("Closing Report", 105, 21, { align: "center" });
+  doc.text("Date: " + today, 105, 27, { align: "center" });
+
+  doc.setTextColor(0, 0, 0);
+
+  let y = 40;
+
+  doc.setFontSize(13);
+  doc.text("Summary", 10, y);
+  y += 8;
+
+  const summary = [
+    ["Total Orders Delivery", document.getElementById("ordersDelivery").innerText.split(": ")[1]],
+    ["Total Delivery", document.getElementById("delivery").innerText.split(": ")[1]],
+    ["Total Foodics POS", document.getElementById("foodics").innerText.split(": ")[1]],
+    ["Total Foodics QR", document.getElementById("qr").innerText.split(": ")[1]],
+    ["Total Tips Cashier", document.getElementById("tips").innerText.split(": ")[1]],
+    ["Total On Account", document.getElementById("onAccount").innerText.split(": ")[1]],
+    ["Final Total", document.getElementById("final").innerText.split(": ")[1]]
+  ];
+
+  doc.setFontSize(11);
+
+  summary.forEach(row => {
+    doc.text(row[0], 10, y);
+    doc.text(row[1], 120, y);
+    y += 8;
+  });
+
+  y += 8;
+  doc.setFontSize(13);
+  doc.text("Entry Details", 10, y);
+  y += 8;
+
+  const deliveryNames = [
+    "HungerStation",
+    "Jahez",
+    "To You",
+    "Keeta",
+    "The Chefz"
+  ];
+
+  for (let i = 0; i <= 4; i++) {
+    const amount = get("a" + i);
+    const orders = get("o" + i);
+
+    if (amount !== 0 || orders !== 0) {
+      doc.text(deliveryNames[i], 10, y);
+      doc.text("Amount: " + amount.toFixed(2) + " | Orders: " + orders.toFixed(0), 70, y);
+      y += 8;
+
+      if (y > 280) {
+        doc.addPage();
+        y = 20;
+      }
+    }
+  }
+
+  const names = [
+    "", "", "", "", "",
+    "Foodics POS 10", "Foodics POS 11", "Foodics POS 12",
+    "Foodics POS 13", "Foodics POS 56", "Foodics POS 57",
+    "Foodics QR Out", "Foodics QR Down", "Employee Bill 30%",
+    "Transfer", "Additional", "Any Bill",
+    "Tips Cashier Out", "Tips Cashier Down",
+    "Total Cash", "Total Transfer", "Party"
+  ];
+
+  for (let i = 5; i <= 21; i++) {
+    const value = get("a" + i);
+
+    if (value !== 0) {
+      doc.text(names[i], 10, y);
+      doc.text(value.toFixed(2), 120, y);
+      y += 8;
+
+      if (y > 280) {
+        doc.addPage();
+        y = 20;
+      }
+    }
+  }
+
+  doc.save("venor_closing_report.pdf");
+}
+</script>
+
+</body>
+</html>
